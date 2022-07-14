@@ -5,6 +5,8 @@ import { TraineePage } from "./features/traineePage/TraineePage"
 import { Accaunt } from "./features/traineePage/accaunt/Accaunt"
 import { ResumeList } from './features/traineePage/resumeList/ResumeList'
 import { Resume } from './features/traineePage/resume/Resume'
+import { RequireAuth } from "./features/auth/RequireAuth";
+
 
 function App() {
   return (
@@ -12,10 +14,14 @@ function App() {
       <Routes>
           <Route path="/" element={<StartPage/>}/>
           <Route path="/auth" element={<Auth/>}/>
-          <Route path="/trainee" element={<TraineePage/>}>
-                <Route path='accaunt' element={<Accaunt/>}/>
-                <Route path='resumeList' element={<ResumeList/>}/>
-                <Route path='resume' element={<Resume/>}/>
+          <Route path="/trainee" element={
+              <RequireAuth> 
+                <TraineePage/> 
+              </RequireAuth>}>
+                
+              <Route path='accaunt' element={<Accaunt/>}/>
+              <Route path='resumeList' element={<ResumeList/>}/>
+              <Route path='resume' element={<Resume/>}/>
           </Route>
       </Routes>
     </div>
