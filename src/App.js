@@ -18,10 +18,9 @@ function App() {
               <RequireAuth> 
                 <TraineePage/> 
               </RequireAuth>}>
-                
               <Route path='accaunt' element={<Accaunt/>}/>
               <Route path='resumeList' element={<ResumeList/>}/>
-              <Route path='resume' element={<Resume/>}/>
+              <Route path='resume/:Id' element={<Resume/>}/>
           </Route>
       </Routes>
     </div>

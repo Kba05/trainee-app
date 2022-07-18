@@ -1,12 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { STATUS } from "./constans";
 
 const initialState = {
-    user : '',
-    status : ''
+    user : ''
 }
 
-export const fetchAuth = createAsyncThunk('auth/fetchAuth',async ()=>{
+export const fetchAuth = createAsyncThunk('auth/fetchAuth', async ()=>{
     const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH'))
     const response = await fetch("browse/getUserProfile", {
         method: "POST",
@@ -25,13 +23,9 @@ export const authSlice = createSlice({
     initialState,
     reducers:{},
     extraReducers(builder){
-        builder.addCase(fetchAuth.pending, (state, action) => {
-            state.status = STATUS.loading
-        }).addCase(fetchAuth.fulfilled, (state, action) => {
-            state.status = STATUS.succeeded
+        builder.addCase(fetchAuth.fulfilled, (state, action) => {
             state.user = action.payload
         }).addCase(fetchAuth.rejected, (state, action) => {
-            state.status = STATUS.failed
             state.error = action.error.message
         })
     }
@@ -39,4 +33,3 @@ export const authSlice = createSlice({
 
 export default authSlice.reducer
 export const selectUser = state => state.user.user
-export const selectStatus = state => state.user.status

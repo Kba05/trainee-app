@@ -1,7 +1,9 @@
 import React, { useMemo, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom"
 import { fetchAuth } from './authSlice'
+import { fetchCategories } from '../traineePage/sideBar/categoriesSlice'
+import { fetchResumes } from '../traineePage/resumeList/resumesSlice'
 
 export const Auth = () => {
   const dispatch = useDispatch()
@@ -23,9 +25,12 @@ export const Auth = () => {
     const token = btoa(logInput + ":" + passInput)
     localStorage.setItem('REACT_TOKEN_AUTH', JSON.stringify(token))
     dispatch(fetchAuth()).then(()=>{
+      dispatch(fetchCategories())
+    }).then(()=>{
+      dispatch(fetchResumes())
+    }).then((res)=>{
       nagivate(fromPage, {replace:true})
     })
-    // console.log(JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH')))
   }
 
   return (

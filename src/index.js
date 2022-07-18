@@ -6,20 +6,22 @@ import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import authReducer from './features/auth/authSlice';
+import categoriesReducer from './features/traineePage/sideBar/categoriesSlice';
+import resumesReducer from './features/traineePage/resumeList/resumesSlice';
 
 const store = configureStore({
   reducer:{
-    user: authReducer
+    user: authReducer,
+    categories: categoriesReducer,
+    resumes :  resumesReducer,
   }
 })
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
           <App />
       </Provider>
     </BrowserRouter>
-  </React.StrictMode>
 );
