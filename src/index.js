@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import authReducer from './features/auth/authSlice';
-import categoriesReducer from './features/traineePage/sideBar/categoriesSlice';
+import categoriesReducer from './features/traineePage/Category/categoriesSlice';
 import resumesReducer from './features/traineePage/resumeList/resumesSlice';
 
 const store = configureStore({

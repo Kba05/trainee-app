@@ -6,6 +6,7 @@ import { Accaunt } from "./features/traineePage/accaunt/Accaunt"
 import { ResumeList } from './features/traineePage/resumeList/ResumeList'
 import { Resume } from './features/traineePage/resume/Resume'
 import { RequireAuth } from "./features/auth/RequireAuth";
+import { ResumeAddForm } from "./features/traineePage/resumeList/ResumeAddForm";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
               <Route path='accaunt' element={<Accaunt/>}/>
               <Route path='resumeList' element={<ResumeList/>}/>
               <Route path='resume/:Id' element={<Resume/>}/>
+              <Route path='addresume' element={<ResumeAddForm/>}/>
           </Route>
       </Routes>
     </div>

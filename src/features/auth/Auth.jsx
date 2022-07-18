@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate, useLocation } from "react-router-dom"
 import { fetchAuth } from './authSlice'
-import { fetchCategories } from '../traineePage/sideBar/categoriesSlice'
+import { fetchCategories } from '../traineePage/Category/categoriesSlice'
 import { fetchResumes } from '../traineePage/resumeList/resumesSlice'
 
 export const Auth = () => {
