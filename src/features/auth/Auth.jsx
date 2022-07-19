@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate, useLocation } from "react-router-dom"
 import { fetchAuth } from './authSlice'
 import { fetchCategories } from '../traineePage/Category/categoriesSlice'
-import { fetchResumes } from '../traineePage/resumeList/resumesSlice'
+import { fetchResumes, fetchLanguages } from '../traineePage/resumeList/resumesSlice'
 
 export const Auth = () => {
   const dispatch = useDispatch()
@@ -22,6 +22,8 @@ export const Auth = () => {
   },[logInput,passInput])
 
   const onSignUp = () => {
+    dispatch(fetchLanguages())
+
     const token = btoa(logInput + ":" + passInput)
     localStorage.setItem('REACT_TOKEN_AUTH', JSON.stringify(token))
     dispatch(fetchAuth()).then(()=>{

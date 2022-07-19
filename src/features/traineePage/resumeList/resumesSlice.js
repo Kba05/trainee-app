@@ -2,7 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 
 const initialState = {
     resumes:[],
-    newId:''
+    newId:'',
+    languages:[]
 }
 const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH'))
 
@@ -42,6 +43,17 @@ export const fetchAddResume = createAsyncThunk('resumes/fetchAddResume', async (
     return await response.json()
 })
 
+export const fetchLanguages = createAsyncThunk('languages/fetchLanguages', async ()=>{
+    const response = await fetch('/browse/Languages', {
+        method: "GET",
+        headers: {
+          Authorization: `Basic ${token}`,
+        }
+    })
+    const result = await response.json()
+    return result.value
+})
+
 export const resumesSlice = createSlice({
     name: "resumes",
     initialState,
@@ -53,6 +65,8 @@ export const resumesSlice = createSlice({
             state.resumes.push(action.payload)
         }).addCase(fetchNewId.fulfilled, (state, action)=>{
             state.newId = action.payload
+        }).addCase(fetchLanguages.fulfilled, (state, action)=>{
+            state.languages.push(...action.payload)
         })
     }
 })
@@ -61,3 +75,4 @@ export default resumesSlice.reducer
 
 export const resumesSelector = state => state.resumes.resumes
 export const newIdSelector = state => state.resumes.newId
+export const languagesSelector = state => state.resumes.languages

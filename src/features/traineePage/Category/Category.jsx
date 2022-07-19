@@ -13,6 +13,7 @@ export const Category = ({onChangeCategory}) => {
     <div>            
         <p>Category:</p>
         <select name='category' onChange={(e)=>onChangeCategory(e)}>
+          <option key="default" value="F"></option>
           {renderedCategory}
         </select>
 

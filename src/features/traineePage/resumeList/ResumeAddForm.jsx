@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector} from 'react-redux';
 import { Category } from '../Category/Category';
-import { fetchAddResume, fetchNewId, newIdSelector} from './resumesSlice';
+import { fetchAddResume, fetchNewId, newIdSelector,languagesSelector} from './resumesSlice';
 
 export const ResumeAddForm = () => {
   const dispatch  = useDispatch()
-  const [category, setCategory] = useState()
+  const [category, setCategory] = useState("F")
+  const [language, setLanguage] = useState("EN")
 
   useEffect(()=>{
     dispatch(fetchNewId())
   },[])
   
   const newId = useSelector(newIdSelector)
+  const languages = useSelector(languagesSelector)
 
   const onAddResume = (e)=>{
     e.preventDefault();
@@ -25,14 +27,24 @@ export const ResumeAddForm = () => {
       Email : form.email.value,
       Salary: Number(form.salary.value), 
       Category: {ID:category}, 
-      Language:{ID:"FR"} 
+      Language: {ID:language} 
     }
     dispatch(fetchAddResume(newResume))
   }
 
   const onChangeAddformCategory = (e)=>{
     setCategory(e.target.value)
+    console.log(e.target.value)
   }
+
+  const onChangeLanguage = (e) =>{
+    setLanguage(e.target.value)
+    console.log(e.target.value)
+  }
+
+  const renderedLanguages = languages.map(language=>{
+    return <option key={language.ID} value={language.ID}>{language.Text}</option>
+  })
 
   return (
     <div>
@@ -54,7 +66,10 @@ export const ResumeAddForm = () => {
         <input type="text" name='email' />
 
         <label htmlFor="language">Language</label>
-        <input type="text" name="language"/>
+        <select name='language' onChange={(e)=>onChangeLanguage(e)}>
+          <option key="default" value="EN"></option>
+          {renderedLanguages}
+        </select>
 
         <label htmlFor="skills">Skills</label>
         <input type="text" name="skills"/>
