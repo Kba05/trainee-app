@@ -3,7 +3,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 const initialState = {
     resumes:[],
     newId:'',
-    languages:[]
+    languages:[],
+    filterField : 'all'
 }
 const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH'))
 
@@ -57,7 +58,11 @@ export const fetchLanguages = createAsyncThunk('languages/fetchLanguages', async
 export const resumesSlice = createSlice({
     name: "resumes",
     initialState,
-    reducers:{},
+    reducers:{
+        updateFilterField(state,action){
+            state.filterField = action.payload
+        }
+    },
     extraReducers(builder){
         builder.addCase(fetchResumes.fulfilled, (state, action) => {
             state.resumes.push(...action.payload)
@@ -73,6 +78,9 @@ export const resumesSlice = createSlice({
 
 export default resumesSlice.reducer
 
+export const {updateFilterField} = resumesSlice.actions
+
 export const resumesSelector = state => state.resumes.resumes
 export const newIdSelector = state => state.resumes.newId
 export const languagesSelector = state => state.resumes.languages
+export const filterFieldSelector = state => state.resumes.filterField

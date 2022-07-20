@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { CategoriesSelector} from './categoriesSlice'
 
-export const Category = ({onChangeCategory}) => {
+export const Category = ({onChangeCategory, selectedKey, defaultKey}) => {
   const categories = useSelector(CategoriesSelector)
 
   const renderedCategory = categories.map( category=>{
@@ -12,8 +12,8 @@ export const Category = ({onChangeCategory}) => {
   return (
     <div>            
         <p>Category:</p>
-        <select name='category' onChange={(e)=>onChangeCategory(e)}>
-          <option key="default" value="F"></option>
+        <select name='category' onChange={(e)=>onChangeCategory(e)} value={selectedKey}>
+          <option key={defaultKey} value={defaultKey}></option>
           {renderedCategory}
         </select>
 

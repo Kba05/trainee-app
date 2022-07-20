@@ -34,12 +34,10 @@ export const ResumeAddForm = () => {
 
   const onChangeAddformCategory = (e)=>{
     setCategory(e.target.value)
-    console.log(e.target.value)
   }
 
   const onChangeLanguage = (e) =>{
     setLanguage(e.target.value)
-    console.log(e.target.value)
   }
 
   const renderedLanguages = languages.map(language=>{

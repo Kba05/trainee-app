@@ -1,12 +1,23 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { resumesSelector } from './resumesSlice'
+import { filterFieldSelector, resumesSelector } from './resumesSlice'
 
 export const ResumeList = () => {
     const navigate = useNavigate()
     const resumes = useSelector(resumesSelector)
-    
+    const filterField = useSelector(filterFieldSelector)
+
+    const filteredResumes = useMemo(()=>{
+        if(filterField !== "all"){
+            return resumes.filter(resume=>{
+               return resume.Category_ID === filterField
+            })
+        } else{
+            return resumes
+        }
+    },[filterField,resumes])
+
     const onClickCell = (resumeId) => {
         navigate(`/trainee/resume/${resumeId}`, { replace: true })
     }
@@ -15,9 +26,9 @@ export const ResumeList = () => {
         navigate('/trainee/addresume')
     }
 
-    const renderedResumes = resumes.map(resume => {
+    const renderedResumes = filteredResumes.map(resume => {
         return (
-            <tr className='border-b divide-sky-500 hover:bg-indigo-50' onClick={() => onClickCell(resume.ID)}>
+            <tr  key={resume.ID} className='border-b divide-sky-500 hover:bg-indigo-50' onClick={() => onClickCell(resume.ID)}>
                 <td className='px-5'>{resume.Surname}</td>
                 <td className='px-5'>{resume.Name}</td>
                 <td className='px-5'>{resume.Category_ID}</td>
