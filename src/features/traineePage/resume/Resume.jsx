@@ -9,22 +9,16 @@ export const Resume = () => {
   const id = Number(params.Id)
   const resumes = useSelector(resumesSelector)
   const categories = useSelector(CategoriesSelector)
-  const exactResume = resumes.filter((resume)=> resume.ID === id )
-  const exactCategory = categories.reduce((cur,category)=>{
-    let cat 
-    if(category.ID === exactResume[0].Category_ID){
-        cat = category.Text
-    }
-    return cat
-  },{}) 
+  const exactResume = resumes.find(resume=> resume.ID === id )
+  const exactCategory = categories.find( category=> category.ID === exactResume.Category_ID ) 
 
   return (
     <div>
         <p className='text-center' >Resume</p>
-        <p>ID: {exactResume[0].ID}</p>
-        <p>Name: {exactResume[0].Surname}</p>
-        <p>Surname: {exactResume[0].Name}</p>
-        <p>Category: {exactCategory}</p>
+        <p>ID: {exactResume.ID}</p>
+        <p>Name: {exactResume.Surname}</p>
+        <p>Surname: {exactResume.Name}</p>
+        <p>Category: {exactCategory.Text}</p>
         <div>
           <input type="text"/>
           <button>

@@ -10,7 +10,7 @@ export const ResumeAddForm = () => {
 
   useEffect(()=>{
     dispatch(fetchNewId())
-  },[])
+  },[dispatch])
   
   const newId = useSelector(newIdSelector)
   const languages = useSelector(languagesSelector)
