@@ -51,34 +51,35 @@ export const ResumeAddForm = () => {
   return (
     <div>
       ResumeAddForm
-      <form className='flex flex-col' onSubmit={onAddResume}>
+      <form className='flex flex-col outline-blue-500' onSubmit={onAddResume}>
         <label htmlFor="surname">Surname</label>
-        <input type="text" name='surname' />
+        <input className='outline-blue-500' type="text" name='surname' />
 
         <label htmlFor="name">Name</label>
-        <input type="text" name="name"/>
+        <input className='outline-blue-500' type="text" name="name"/>
 
         <label htmlFor="dateBirth"> Date birth</label>
-        <input type="date" name="dateBirth"/>
+        <input className='outline-blue-500' type="date" name="dateBirth"/>
 
         <label htmlFor="tel">Tel</label>
-        <input type="tel" name="tel"/>
+        <input  className='outline-blue-500' type="tel" name="tel"/>
 
         <label htmlFor="email">Email</label>
-        <input type="text" name='email' />
+        <input className='outline-blue-500' type="text" name='email' />
 
         <label htmlFor="language">Language</label>
-        <select name='language' onChange={(e)=>onChangeLanguage(e)}>
+        <select className='outline-blue-500' name='language' onChange={(e)=>onChangeLanguage(e)}>
           <option key="default" value="EN"></option>
           {renderedLanguages}
         </select>
 
         <label htmlFor="skills">Skills</label>
-        <input type="text" name="skills"/>
+        <input className='outline-blue-500' type="text" name="skills"/>
 
         <label htmlFor="salary">Salary</label>
-        <input type="number" name="salary"/>
+        <input className='outline-blue-500' type="number" name="salary"/>
 
+        <label htmlFor="category">Category</label>
         <Category onChangeCategory={onChangeAddformCategory}/>
 
         <button type='submit'>Add Resume</button>

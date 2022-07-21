@@ -7,10 +7,10 @@ export const TraineePage = () => {
     <div className='h-screen'>
       <div className='container'>
         <div className='flex py-3'>
-          <aside className='px-5 py-5 w-2/12'>
+          <aside className='px-5 py-5 w-3/12'>
               <SideToolbar/>
           </aside>
-          <main className='bg-white px-5 py-5 w-10/12 rounded-2xl'>
+          <main className='bg-white px-5 py-5 w-11/12 rounded-2xl'>
               <Outlet/>
           </main>
         </div>

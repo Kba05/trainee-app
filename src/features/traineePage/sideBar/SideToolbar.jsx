@@ -16,15 +16,26 @@ export const SideToolbar = () => {
 
   return (
     <div>
-          <Link to="/">Start Page</Link> 
+        <div>
+            <Link to="/">Start Page</Link> 
+        </div>
+        
         <div>
             <Link to="accaunt">My Account</Link> 
         </div>
+        
         <div>
             <Link to="resumeList">My Resumes</Link> 
         </div>
-        {showCat?<Category onChangeCategory={onChangeCategory} defaultKey={'all'} selectedKey={selectedKey}/>:''}
-       
+        
+        {
+          showCat?
+          <div className='my-3 px-5 py-5 shadow-md rounded-xl'>
+            <p className='my-2 '>Filter by category</p>
+            <Category onChangeCategory={onChangeCategory} defaultKey={'all'} selectedKey={selectedKey}/>
+          </div>
+          :''
+        }
     </div>
   )
 }

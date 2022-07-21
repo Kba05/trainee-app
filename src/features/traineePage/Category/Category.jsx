@@ -11,8 +11,7 @@ export const Category = ({onChangeCategory, selectedKey, defaultKey}) => {
 
   return (
     <div>            
-        <p>Category:</p>
-        <select name='category' onChange={(e)=>onChangeCategory(e)} value={selectedKey}>
+        <select className="bg-inherit outline-blue-500" name='category' onChange={(e)=>onChangeCategory(e)} value={selectedKey}>
           <option key={defaultKey} value={defaultKey}>{defaultKey}</option>
           {renderedCategory}
         </select>
