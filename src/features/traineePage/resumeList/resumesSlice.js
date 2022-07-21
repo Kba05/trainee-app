@@ -55,6 +55,19 @@ export const fetchLanguages = createAsyncThunk('languages/fetchLanguages', async
     return result.value
 })
 
+export const fetchChangeOwner = createAsyncThunk('owner/fetchChangeOwner', async (ownerAndResume)=>{
+    const response = await fetch('/browse/changeOwner', {
+        method: "POST",
+        headers: {
+          Authorization: `Basic ${token}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(ownerAndResume)
+    })
+    const result = await response.json()
+    return result
+})
+
 export const resumesSlice = createSlice({
     name: "resumes",
     initialState,
@@ -65,6 +78,7 @@ export const resumesSlice = createSlice({
     },
     extraReducers(builder){
         builder.addCase(fetchResumes.fulfilled, (state, action) => {
+            state.resumes = []
             state.resumes.push(...action.payload)
         }).addCase(fetchAddResume.fulfilled, (state, action)=>{
             state.resumes.push(action.payload)
@@ -72,6 +86,8 @@ export const resumesSlice = createSlice({
             state.newId = action.payload
         }).addCase(fetchLanguages.fulfilled, (state, action)=>{
             state.languages.push(...action.payload)
+        }).addCase(fetchChangeOwner.fulfilled, (state, action)=>{
+            console.log(action)
         })
     }
 })

@@ -22,15 +22,15 @@ export const Auth = () => {
   },[logInput,passInput])
 
   const onSignUp = () => {
-    dispatch(fetchLanguages())
-
     const token = btoa(logInput + ":" + passInput)
     localStorage.setItem('REACT_TOKEN_AUTH', JSON.stringify(token))
     dispatch(fetchAuth()).then(()=>{
       dispatch(fetchCategories())
     }).then(()=>{
       dispatch(fetchResumes())
-    }).then((res)=>{
+    }).then(()=>{
+      dispatch(fetchLanguages())
+    }).then(()=>{
       nagivate(fromPage, {replace:true})
     })
   }
@@ -56,7 +56,7 @@ export const Auth = () => {
             onChange={(e) => setPassInput(e.target.value)} />
 
           <button
-            className='border bg-blue-500 hover:text-white mb-5 disabled:bg-indigo-50 disabled:text-white '
+            className='border bg-blue-500 hover:text-white mb-5 disabled:bg-indigo-50 disabled:text-white'
             onClick={() => onSignUp()}
             disabled={ableSignUp}>
             Sign up

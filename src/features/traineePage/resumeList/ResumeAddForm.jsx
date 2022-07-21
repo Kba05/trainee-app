@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector} from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Category } from '../Category/Category';
 import { fetchAddResume, fetchNewId, newIdSelector,languagesSelector} from './resumesSlice';
 
 export const ResumeAddForm = () => {
   const dispatch  = useDispatch()
+  const navigate = useNavigate()
   const [category, setCategory] = useState("F")
   const [language, setLanguage] = useState("EN")
 
@@ -29,7 +31,9 @@ export const ResumeAddForm = () => {
       Category: {ID:category}, 
       Language: {ID:language} 
     }
-    dispatch(fetchAddResume(newResume))
+    dispatch(fetchAddResume(newResume)).then(()=>{
+      navigate('/trainee/resumeList')
+    })
   }
 
   const onChangeAddformCategory = (e)=>{
