@@ -22,16 +22,15 @@ export const Auth = () => {
   },[logInput,passInput])
 
   const onSignUp = () => {
-    const token = btoa(logInput + ":" + passInput)
+    const token = window.btoa(logInput + ":" + passInput)
     localStorage.setItem('REACT_TOKEN_AUTH', JSON.stringify(token))
-    dispatch(fetchAuth()).then(()=>{
-      dispatch(fetchCategories())
-    }).then(()=>{
-      dispatch(fetchResumes())
-    }).then(()=>{
+    Promise.all([
+      dispatch(fetchAuth()),
+      dispatch(fetchCategories()),
+      dispatch(fetchResumes()),
       dispatch(fetchLanguages())
-    }).then(()=>{
-      nagivate(fromPage, {replace:true})
+    ]).then(()=>{
+      return nagivate(fromPage, {replace:true})
     })
   }
 
