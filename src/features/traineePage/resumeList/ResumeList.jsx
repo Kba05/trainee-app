@@ -1,6 +1,8 @@
 import React, { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { CATEGORY_ALL } from '../../../constants/constants'
+import { Routings } from '../../../Routes/routes'
 import { filterFieldSelector, resumesSelector } from './resumesSlice'
 
 export const ResumeList = () => {
@@ -9,7 +11,7 @@ export const ResumeList = () => {
     const filterField = useSelector(filterFieldSelector)
 
     const filteredResumes = useMemo(()=>{
-        if(filterField !== "all"){
+        if(filterField !== CATEGORY_ALL){
             return resumes.filter(resume=>{
                return resume.Category_ID === filterField
             })
@@ -19,11 +21,11 @@ export const ResumeList = () => {
     },[filterField,resumes])
 
     const onClickCell = (resumeId) => {
-        navigate(`/trainee/resume/${resumeId}`, { replace: true })
+        navigate(`${Routings.RESUME}/${resumeId}`, { replace: true })
     }
 
     const onClickAddResume = ()=>{
-        navigate('/trainee/addresume')
+        navigate(Routings.ADD_RESUME)
     }
 
     const renderedResumes = filteredResumes.map(resume => {
@@ -40,7 +42,7 @@ export const ResumeList = () => {
     return (
         <div className='flex flex-col'>
             <div>
-                <div className='float-right px-2 rounded hover:bg-indigo-50' onClick={()=>onClickAddResume()}>
+                <div className='float-right px-2 rounded hover:bg-indigo-50' onClick={onClickAddResume}>
                     Add resume
                 </div>
             </div>

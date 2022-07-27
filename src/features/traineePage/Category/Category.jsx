@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { CategoriesSelector} from './categoriesSlice'
 
 export const Category = ({onChangeCategory, selectedKey, defaultKey}) => {
+  
   const categories = useSelector(CategoriesSelector)
 
   const renderedCategory = categories.map( category=>{
@@ -11,7 +12,7 @@ export const Category = ({onChangeCategory, selectedKey, defaultKey}) => {
 
   return (
     <div>            
-        <select className="bg-inherit outline-blue-500" name='category' onChange={(e)=>onChangeCategory(e)} value={selectedKey}>
+        <select className="bg-inherit outline-blue-500" name='category' onChange={onChangeCategory} value={selectedKey}>
           <option key={defaultKey} value={defaultKey}>{defaultKey}</option>
           {renderedCategory}
         </select>

@@ -6,7 +6,9 @@ import { CategoriesSelector } from '../Category/categoriesSlice'
 import { selectUser } from '../../auth/authSlice'
  
 export const Resume = () => {
+
   const dispatch = useDispatch()
+  
   const params  = useParams()
 
   const id = Number(params.Id)

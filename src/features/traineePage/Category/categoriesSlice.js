@@ -1,11 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { AUTH_TOKEN_KEY } from "../../../constants/constants";
 
 const initialState = {
     categories: [],
 }
 
 export const fetchCategories = createAsyncThunk('categories/fetchCategories',async ()=>{
-    const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH'))
+    const token = JSON.parse(localStorage.getItem(AUTH_TOKEN_KEY))
     const response = await fetch("/browse/Categories", {
         method: "GET",
         headers: {

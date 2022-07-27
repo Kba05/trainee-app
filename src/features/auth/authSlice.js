@@ -1,11 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { AUTH_TOKEN_KEY } from "../../constants/constants";
 
 const initialState = {
     user : ''
 }
 
 export const fetchAuth = createAsyncThunk('auth/fetchAuth', async ()=>{
-    const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH'))
+    const token = JSON.parse(localStorage.getItem(AUTH_TOKEN_KEY))
     const response = await fetch("browse/getUserProfile", {
         method: "POST",
         headers: {

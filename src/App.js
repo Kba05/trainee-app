@@ -7,19 +7,19 @@ import { ResumeList } from './features/traineePage/resumeList/ResumeList'
 import { Resume } from './features/traineePage/resume/Resume'
 import { RequireAuth } from "./features/auth/RequireAuth";
 import { ResumeAddForm } from "./features/traineePage/resumeList/ResumeAddForm";
-
+import { Routings }  from './Routes/routes';
 
 function App() {
   return (
     <div className="bg-indigo-50 ">
       <Routes>
-          <Route path="/" element={<StartPage/>}/>
-          <Route path="/auth" element={<Auth/>}/>
-          <Route path="/trainee" element={ <RequireAuth> <TraineePage/> </RequireAuth> }>
-              <Route path='accaunt' element={<Accaunt/>}/>
-              <Route path='resumeList' element={<ResumeList/>}/>
-              <Route path='resume/:Id' element={<Resume/>}/>
-              <Route path='addresume' element={<ResumeAddForm/>}/>
+          <Route path={Routings.INDEX} element={<StartPage/>}/>
+          <Route path={Routings.AUTH} element={<Auth/>}/>
+          <Route path={Routings.TRAINEE_PAGE} element={ <RequireAuth> <TraineePage/> </RequireAuth> }>
+            <Route path={Routings.ACCAUNT} element={<Accaunt/>}/>
+            <Route path={Routings.RESUME_LIST} element={<ResumeList/>}/>
+            <Route path={Routings.RESUME_ID} element={<Resume/>}/>
+            <Route path={Routings.ADD_RESUME} element={<ResumeAddForm/>}/>
           </Route>
       </Routes>
     </div>

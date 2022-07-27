@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
+import { AUTH_TOKEN_KEY, CATEGORY_ALL } from "../../../constants/constants"
 
 const initialState = {
     resumes:[],
     newId:'',
     languages:[],
-    filterField : 'all'
+    filterField : CATEGORY_ALL
 }
-const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH'))
+const token = JSON.parse(localStorage.getItem(AUTH_TOKEN_KEY))
 
 export const fetchNewId = createAsyncThunk('resumes/fetchNewId', async ()=>{
     const response = await fetch('/browse/getNewId', {

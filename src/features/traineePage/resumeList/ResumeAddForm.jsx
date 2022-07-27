@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector} from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { INITIAL_VALUE_ADD_FORM } from '../../../constants/constants';
+import { Routings } from '../../../Routes/routes';
 import { Category } from '../Category/Category';
 import { fetchAddResume, fetchNewId, newIdSelector,languagesSelector} from './resumesSlice';
 
 export const ResumeAddForm = () => {
+
   const dispatch  = useDispatch()
+
   const navigate = useNavigate()
-  const [category, setCategory] = useState("F")
-  const [language, setLanguage] = useState("EN")
+
+  const [category, setCategory] = useState(INITIAL_VALUE_ADD_FORM.INITIAL_CATEGORY)
+  const [language, setLanguage] = useState(INITIAL_VALUE_ADD_FORM.INITIAL_LANGUAGE)
 
   useEffect(()=>{
     dispatch(fetchNewId())
@@ -32,7 +37,7 @@ export const ResumeAddForm = () => {
       Language: {ID:language} 
     }
     dispatch(fetchAddResume(newResume)).then(()=>{
-      navigate('/trainee/resumeList')
+      navigate(Routings.RESUME_LIST)
     })
   }
 
@@ -68,7 +73,7 @@ export const ResumeAddForm = () => {
         <input className='outline-blue-500' type="text" name='email' />
 
         <label htmlFor="language">Language</label>
-        <select className='outline-blue-500' name='language' onChange={(e)=>onChangeLanguage(e)}>
+        <select className='outline-blue-500' name='language' onChange={onChangeLanguage}>
           <option key="default" value="EN"></option>
           {renderedLanguages}
         </select>
