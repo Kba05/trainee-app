@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector} from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { Input } from '../../../component/input/Input';
 import { INITIAL_VALUE_ADD_FORM } from '../../../constants/constants';
 import { Routings } from '../../../Routes/routes';
 import { Category } from '../Category/Category';
@@ -57,37 +58,35 @@ export const ResumeAddForm = () => {
     <div>
       ResumeAddForm
       <form className='flex flex-col outline-blue-500' onSubmit={onAddResume}>
-        <label htmlFor="surname">Surname</label>
-        <input className='outline-blue-500' type="text" name='surname' />
 
-        <label htmlFor="name">Name</label>
-        <input className='outline-blue-500' type="text" name="name"/>
+        <Input labelValue="Surname" typeOfInput="text" nameOfInput="surname" />
 
-        <label htmlFor="dateBirth"> Date birth</label>
-        <input className='outline-blue-500' type="date" name="dateBirth"/>
+        <Input labelValue="Name" typeOfInput="text" nameOfInput="name" />
 
-        <label htmlFor="tel">Tel</label>
-        <input  className='outline-blue-500' type="tel" name="tel"/>
+        <Input labelValue="Date birth" typeOfInput="date" nameOfInput="dateBirth" />
 
-        <label htmlFor="email">Email</label>
-        <input className='outline-blue-500' type="text" name='email' />
+        <Input labelValue="Tel" typeOfInput="tel" nameOfInput="tel" />
+
+        <Input labelValue="Email" typeOfInput="text" nameOfInput="email" />
+
+        <Input labelValue="Skills" typeOfInput="text" nameOfInput="skills" />
+
+        <Input labelValue="Salary" typeOfInput="number" nameOfInput="salary" />
 
         <label htmlFor="language">Language</label>
-        <select className='outline-blue-500' name='language' onChange={onChangeLanguage}>
+        <select className='border border-inherit outline-blue-500 mb-5' name='language' onChange={onChangeLanguage}>
           <option key="default" value="EN"></option>
           {renderedLanguages}
         </select>
 
-        <label htmlFor="skills">Skills</label>
-        <input className='outline-blue-500' type="text" name="skills"/>
-
-        <label htmlFor="salary">Salary</label>
-        <input className='outline-blue-500' type="number" name="salary"/>
-
         <label htmlFor="category">Category</label>
-        <Category onChangeCategory={onChangeAddformCategory}/>
+        <div className='mb-5'>
+          <Category onChangeCategory={onChangeAddformCategory}/>
+        </div>
 
-        <button type='submit'>Add Resume</button>
+        <div className="flex justify-end">
+          <button className='border border-inherit hover:bg-indigo-50 disabled:bg-inherit px-3 py-1 rounded' type='submit'>Add Resume</button>
+        </div>
       </form>
     </div>
   )

@@ -15,7 +15,7 @@ export const fetchAuth = createAsyncThunk('auth/fetchAuth', async ()=>{
         }
     })
     const result = await response.json()
-    return result.Name
+    return result
     
 })
 
@@ -25,9 +25,10 @@ export const authSlice = createSlice({
     reducers:{},
     extraReducers(builder){
         builder.addCase(fetchAuth.fulfilled, (state, action) => {
-            state.user = action.payload
+            state.user = action.payload.Name
         }).addCase(fetchAuth.rejected, (state, action) => {
-            state.error = action.error.message
+            // state.error = action.error.message
+            console.log(action.payload)
         })
     }
 })

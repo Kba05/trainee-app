@@ -27,14 +27,15 @@ export const Auth = () => {
   const onSignUp = () => {
     const token = window.btoa(logInput + ":" + passInput)
     localStorage.setItem(AUTH_TOKEN_KEY, JSON.stringify(token))
+    // dispatch(fetchAuth()).catch(error=> console.log(error))
     Promise.all([
-      dispatch(fetchAuth()),
-      dispatch(fetchCategories()),
-      dispatch(fetchResumes()),
-      dispatch(fetchLanguages())
+        dispatch(fetchAuth()),
+        dispatch(fetchCategories()),
+        dispatch(fetchResumes()),
+        dispatch(fetchLanguages())
     ]).then(()=>{
       return nagivate(fromPage, {replace:true})
-    })
+    }).catch((e)=>console.log(e))
   }
 
   const OnChangeLoginInput = (e) =>{
