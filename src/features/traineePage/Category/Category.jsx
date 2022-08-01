@@ -11,12 +11,11 @@ export const Category = ({onChangeCategory, selectedKey, defaultKey}) => {
   })
 
   return (
-    <div>            
-        <select className="bg-inherit outline-blue-500" name='category' onChange={onChangeCategory} value={selectedKey}>
+    <>            
+        <select className="border border-indigo-50 bg-inherit outline-blue-500" name='category' onChange={onChangeCategory} value={selectedKey}>
           <option key={defaultKey} value={defaultKey}>{defaultKey}</option>
           {renderedCategory}
         </select>
-
-    </div>
+    </>
   )
 }
