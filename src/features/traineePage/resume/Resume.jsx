@@ -44,12 +44,6 @@ export const Resume = () => {
         <p>Name: {exactResume.Surname}</p>
         <p>Surname: {exactResume.Name}</p>
         <p>Category: {exactCategory.Text}</p>
-        <div>
-          <input type="text"/>
-          <button>
-            send
-          </button>
-        </div>
     </div>
   )
 }
